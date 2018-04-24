@@ -1,30 +1,25 @@
 import React from 'react'
 
 import Sky from './Sky'
-import Box from './Box'
-import BasketBall from './BasketBall'
-import Car from './Car'
-import Donut from './Donut'
-import IPhone from './Iphone'
-import Shoes from './Shoes'
+import {Items} from './items'
 import Room from './Room'
 
 const setItem = (item) => {
   switch (item) {
     case 'gift':
-      return Box
+      return Items.Box
     case 'basketball':
-      return BasketBall
+      return Items.BasketBall
     case 'car':
-      return Car
+      return Items.Car
     case 'donut':
-      return Donut
+      return Items.Donut
     case 'shoes':
-      return Shoes
+      return Items.Shoes
     case 'iphone':
-      return IPhone
+      return Items.Iphone
     default:
-      return Box
+      return Items.Box
   }
 }
 
