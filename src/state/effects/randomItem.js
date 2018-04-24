@@ -6,8 +6,8 @@ import {setItem} from '../actions/setItem'
 
 export function* randomItemEffect() {
   while (true) {
-    yield take(types.RANDOM_ITEM)
+    const {payload: {index}} = yield take(types.RANDOM_ITEM)
     const item = yield call(randomItem)
-    yield put(setItem(item))
+    yield put(setItem(item, index))
   }
 }

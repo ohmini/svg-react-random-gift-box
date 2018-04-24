@@ -1,25 +1,45 @@
 import React, {Component} from 'react'
-import {withHandlers} from 'recompose'
-import { connect } from 'react-redux'
+import {withHandlers, withState, compose} from 'recompose'
+import {connect} from 'react-redux'
 
 import {randomItem} from './state/actions/randomItem'
 import {getItem} from './state/selectors/getItem'
 import Canvas from './components/Canvas'
 
 class App extends Component {
+  componentDidMount () {
+    const {handleResize} = this.props
+    window.addEventListener('resize', handleResize)
+  }
+
+  componentWillUnmount () {
+    const {handleResize} = this.props
+    window.removeEventListener('resize', handleResize)
+  }
+
   render() {
-    const {handleClick, item} = this.props
+    const {item, windowWidth, windowHeight, randomItem} = this.props
     return (
-      <Canvas handleClick={handleClick} item={item} />
+      <Canvas
+        item={item}
+        windowWidth={windowWidth}
+        windowHeight={windowHeight}
+        randomItem={randomItem}
+      />
     )
   }
 }
 
-const enhance = withHandlers({
-  handleClick: ({randomItem}) => () => {
-    randomItem()
-  }
-})
+const enhance = compose(
+  withState('windowWidth', 'setWindowWidth', window.innerWidth),
+  withState('windowHeight', 'setWindowHeight', window.innerHeight),
+  withHandlers({
+    handleResize: ({setWindowWidth, setWindowHeight}) => (e) => {
+      setWindowWidth(e.target.innerWidth)
+      setWindowHeight(e.target.innerHeight)
+    }
+  }),
+)
 
 const mapStateToProps = (state) => ({
   item: getItem(state),

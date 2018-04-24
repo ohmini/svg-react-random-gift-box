@@ -1,42 +1,50 @@
 import React from 'react'
 
 import Sky from './Sky'
-import {Items} from './items'
 import Room from './Room'
+import ItemContainer from './ItemContainer'
 
-const setItem = (item) => {
-  switch (item) {
-    case 'gift':
-      return Items.Box
-    case 'basketball':
-      return Items.BasketBall
-    case 'car':
-      return Items.Car
-    case 'donut':
-      return Items.Donut
-    case 'shoes':
-      return Items.Shoes
-    case 'iphone':
-      return Items.Iphone
-    default:
-      return Items.Box
-  }
-}
+import {createGrid} from '../utils/createGrid'
+import {makeGridSize} from '../utils/makeGridSize'
+import {setItem} from '../utils/setItem'
 
 const Canvas = (props) => {
-  const {handleClick, item} = props
-  const ItemComponent = setItem(item)
+  const {item, windowWidth, windowHeight, randomItem} = props
+  const ItemComponent = setItem('gift')
+  let RewardComponent = ItemComponent
+  if (item) {
+    RewardComponent = setItem(item.name)
+  }
+  const gridSize = makeGridSize(windowWidth, windowHeight, 3, 3)
+  const grids = createGrid(gridSize, 3, 3)
   return (
     <svg
       id="gift-box-canvas"
       x="0px" y="0px"
-      width="841.89px" height="595.28px" viewBox="0 0 841.89 595.28"
+      viewBox={`0 0 ${windowWidth} ${windowHeight}`}
     >
       <Sky />
-      <Room />
-      <ItemComponent handleClick={handleClick} x="400px" y="300px" width="200px" height="200px"/>
+      <Room windowWidth={windowWidth} windowHeight={windowHeight} />
+      {
+        grids.map((grid, index) => {
+          return (
+            <ItemContainer
+              randomItem={randomItem}
+              key={index}
+              index={index}
+              grid={grid}
+              ItemComponent={isRewardComponent(index, item, ItemComponent, RewardComponent)}
+            />
+          )
+        })
+      }
     </svg>
   )
+}
+
+function isRewardComponent(index, item, GiftComponent, RewardComponent){
+  if (!item) return GiftComponent
+  return (index === item.index) ? RewardComponent: GiftComponent
 }
 
 export default Canvas

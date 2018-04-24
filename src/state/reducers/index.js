@@ -2,7 +2,7 @@ import {types} from '../actions'
 import {setItem} from './setItem'
 
 const initialState = {
-  item: 'gift',
+  item: null,
 }
 
 const reducer = (state = initialState, action) => {

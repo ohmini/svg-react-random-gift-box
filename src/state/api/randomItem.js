@@ -1,9 +1,9 @@
 const items = [
-  { name: "basketball", rate: 0.25, },
-  { name: "car", rate: 0.05, },
-  { name: "donut", rate: 0.35, },
-  { name: "iphone", rate: 0.1, },
-  { name: "shoes", rate: 0.25, },
+  { name: "basketball", quantity: 2 },
+  { name: "car", quantity: 1, },
+  { name: "donut", quantity: 3, },
+  { name: "iphone", quantity: 1, },
+  { name: "shoes", quantity: 2, },
 ]
 
 export const randomItem = () => {

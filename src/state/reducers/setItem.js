@@ -1,6 +1,9 @@
 export const setItem = (state, action) => {
   return {
     ...state,
-    item: action.payload.item,
+    item: {
+      name: action.payload.item,
+      index: action.payload.index,
+    },
   }
 }

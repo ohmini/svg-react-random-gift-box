@@ -1,9 +1,21 @@
 import React from 'react'
 
-const Room = () => {
+const calculateSize = (windowWidth, windowHeight, imageWidth, imageHeight) => {
+  const rate = windowWidth/imageWidth
+  const displayWidth = imageWidth * rate
+  const displayHeight = imageHeight * rate
+  return {
+    width: displayWidth,
+    height: displayHeight,
+  }
+}
+
+const Room = (props) => {
+  const {windowWidth, windowHeight} = props
+  const size = calculateSize(windowWidth, windowHeight, 1980, 1080)
   return (
     <svg id="Layer_1" x="0px" y="0px"
-    	 width="960px" height="540px" viewBox="0 0 1920 1080" enableBackground="new 0 0 1920 1080"
+    	 width={size.width} height={size.height} viewBox="0 0 1920 1080"
        >
     <g>
     	<g>
