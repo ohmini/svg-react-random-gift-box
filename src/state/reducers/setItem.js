@@ -2,7 +2,7 @@ export const setItem = (state, action) => {
   return {
     ...state,
     item: {
-      name: action.payload.item,
+      name: action.payload.item.name,
       index: action.payload.index,
     },
   }

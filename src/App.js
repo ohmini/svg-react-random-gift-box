@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 
 import {randomItem} from './state/actions/randomItem'
 import {getItem} from './state/selectors/getItem'
+import {getClickable} from './state/selectors/getClickable'
+import {getChooseIndex} from './state/selectors/getChooseIndex'
 import Canvas from './components/Canvas'
 
 class App extends Component {
@@ -18,13 +20,15 @@ class App extends Component {
   }
 
   render() {
-    const {item, windowWidth, windowHeight, randomItem} = this.props
+    const {item, windowWidth, windowHeight, randomItem, clickable, chooseIndex} = this.props
     return (
       <Canvas
         item={item}
         windowWidth={windowWidth}
         windowHeight={windowHeight}
         randomItem={randomItem}
+        chooseIndex={chooseIndex}
+        clickable={clickable}
       />
     )
   }
@@ -43,6 +47,8 @@ const enhance = compose(
 
 const mapStateToProps = (state) => ({
   item: getItem(state),
+  clickable: getClickable(state),
+  chooseIndex: getChooseIndex(state),
 })
 
 const withStore = connect(mapStateToProps, {
