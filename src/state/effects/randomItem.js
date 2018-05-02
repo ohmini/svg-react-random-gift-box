@@ -1,7 +1,7 @@
 import {take, call, put} from 'redux-saga/effects'
 
 import {types} from '../actions'
-import {randomItemAsync} from '../api/randomItem'
+import {randomItemAsync} from '../api/randomItemAsync'
 import {setItem} from '../actions/setItem'
 import {setClickable} from '../actions/setClickable'
 import {setChooseIndex} from '../actions/setChooseIndex'
