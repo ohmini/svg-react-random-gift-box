@@ -9,7 +9,7 @@ import {makeGridSize} from '../utils/makeGridSize'
 import {setItem} from '../utils/setItem'
 
 const Canvas = (props) => {
-  const {item, windowWidth, windowHeight, randomItem} = props
+  const {item, windowWidth, windowHeight, randomItem, chooseIndex, clickable} = props
   const ItemComponent = setItem('gift')
   let RewardComponent = ItemComponent
   if (item) {
@@ -28,18 +28,25 @@ const Canvas = (props) => {
       {
         grids.map((grid, index) => {
           return (
-            <ItemContainer
-              randomItem={randomItem}
-              key={index}
-              index={index}
-              grid={grid}
-              ItemComponent={isRewardComponent(index, item, ItemComponent, RewardComponent)}
-            />
+              <ItemContainer
+                randomItem={randomItem}
+                clickable={clickable}
+                key={index}
+                index={index}
+                grid={grid}
+                ItemComponent={isRewardComponent(index, item, ItemComponent, RewardComponent)}
+                isMoving={isMoving(chooseIndex, index)}
+              />
           )
         })
       }
     </svg>
   )
+}
+
+function isMoving(chooseIndex, index) {
+  if (!chooseIndex) return false
+  return (chooseIndex === index) ? true: false
 }
 
 function isRewardComponent(index, item, GiftComponent, RewardComponent){

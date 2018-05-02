@@ -1,26 +1,34 @@
 import React, {Component} from 'react'
+import styled from 'styled-components'
 import {withHandlers} from 'recompose'
+
+const Container = styled.g`
+  cursor: pointer;
+`
 
 class ItemContainer extends Component {
   render() {
-    const {ItemComponent, grid, handleClick} = this.props
+    const {ItemComponent, grid, handleClick, isMoving} = this.props
     return (
-      <g>
+      <Container>
         <ItemComponent
           handleClick={handleClick}
           x={grid.x}
           y={grid.y}
           width={grid.width}
           height={grid.height}
+          isMoving={isMoving}
         />
-      </g>
+      </Container>
     )
   }
 }
 
 const enhance = withHandlers({
-  handleClick: ({index, randomItem}) => () => {
-    randomItem(index)
+  handleClick: ({index, randomItem, clickable}) => () => {
+    if (clickable) {
+      randomItem(index)
+    }
   }
 })
 
