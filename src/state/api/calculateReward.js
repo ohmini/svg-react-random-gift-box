@@ -9,7 +9,7 @@ export const calculateReward = (items) => {
     const minRange = total+1
     total = maxRange
     return {
-      name: i.name,
+      ...i,
       min: minRange,
       max: maxRange,
     }
