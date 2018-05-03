@@ -1,14 +1,6 @@
 import {items} from '../constants/items'
+import {resolveAfterMilliSeconds} from '../../utils/resolveAfterMilliSeconds'
 
 export async function loadRewardRatio() {
-  const item = items[Math.floor(Math.random()*items.length)]
-  return await resolveAfterSeconds(item, 2)
-}
-
-function resolveAfterSeconds(item, seconds) {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve(item)
-    }, seconds * 1000)
-  })
+  return await resolveAfterMilliSeconds(items, 500)
 }

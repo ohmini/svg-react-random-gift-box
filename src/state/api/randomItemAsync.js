@@ -1,4 +1,5 @@
 import {items} from '../constants/items'
+import {resolveAfterMilliSeconds} from '../../utils/resolveAfterMilliSeconds'
 
 export async function randomItemAsync(prevItem, ms) {
   let item = items[Math.floor(Math.random()*items.length)]
@@ -7,13 +8,5 @@ export async function randomItemAsync(prevItem, ms) {
       item = items[Math.floor(Math.random()*items.length)]
     }
   }
-  return await resolveAfterSeconds(item, ms)
-}
-
-function resolveAfterSeconds(item, ms) {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve(item)
-    }, ms)
-  })
+  return await resolveAfterMilliSeconds(item, ms)
 }
