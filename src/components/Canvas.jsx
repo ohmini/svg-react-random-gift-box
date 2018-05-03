@@ -1,10 +1,15 @@
 import React from 'react'
+import styled from 'styled-components'
 
 import Sky from './Sky'
 import ItemContainer from './ItemContainer'
 import GiftButton from './GiftButton'
 
 import {setItem} from '../utils/setItem'
+
+const Container = styled.g`
+  cursor: pointer;
+`
 
 const Canvas = (props) => {
   const {item, windowWidth, windowHeight, randomItem, pickReward, clickable, isMoving} = props
@@ -35,7 +40,9 @@ const Canvas = (props) => {
         height={itemHeight}
         width={itemWidth}
       />
-      <GiftButton clickable={clickable} randomItem={randomItem} pickReward={pickReward} position={btnPosition} width={btnWidth} height={btnHeight} isMoving={isMoving}/>
+      <Container>
+        <GiftButton clickable={clickable} randomItem={randomItem} pickReward={pickReward} position={btnPosition} width={btnWidth} height={btnHeight} isMoving={isMoving}/>
+      </Container>
     </svg>
   )
 }

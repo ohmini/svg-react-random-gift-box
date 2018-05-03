@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import styled from 'styled-components'
 
 const Container = styled.g`
-  cursor: pointer;
+  
 `
 
 class ItemContainer extends Component {
