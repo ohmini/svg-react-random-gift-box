@@ -1,42 +1,13 @@
 // @flow
 import React, {Component} from 'react'
-import styled, {keyframes} from 'styled-components'
 import {withHandlers} from 'recompose'
-
-const moveVertically = keyframes`
-  0% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(20deg);
-  }
-  50% {
-    transform: rotate(0deg);
-  }
-  75% {
-    transform: rotate(-20deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-`
-
-const Move = styled.g`
-  animation: ${moveVertically} .5s linear;
-  animation-iteration-count: infinite;
-  transform-origin: 50% 50%;
-`
-const Wait = styled.g`
-`
 
 class SmallGiftBox extends Component {
   render() {
-    const {handleClick, isMoving, position, width, height,} = this.props
-    const Animation = isMoving ? Move: Wait
+    const {handleClick, position, width, height,} = this.props
     return (
       <svg onClick={handleClick} version="1.1" id="this-gift-box" x={position.x} y={position.y} width={width} height={height}
          viewBox="0 0 504.124 504.124" enableBackground="new 0 0 504.124 504.124" transform="translate(-53, -130)">
-         <Animation>
             <path fill="#DB5449" className="aa" d="M15.754,133.909l236.308,118.154L488.37,133.909v252.062L252.062,504.123L15.754,385.969V133.909z"/>
             <path fill="#C54B42" className="aa" d="M15.754,157.538v73.649l235.52,115.397l237.095-115.791v-73.255L252.062,273.33L15.754,157.538z"/>
             <path fill="#D05045" className="aa" d="M252.062,504.123V252.063L31.508,141.786H15.754v244.185L252.062,504.123z"/>
@@ -54,7 +25,6 @@ class SmallGiftBox extends Component {
             <path fill="#DCDCDC" className="aa" d="M346.585,204.801v251.668l63.015-31.508V173.293L346.585,204.801z"/>
             <path fill="#D1D1D1" className="aa" d="M94.523,425.354l63.015,31.508V205.195l-63.015-31.902C94.523,173.292,94.523,425.354,94.523,425.354
               z"/>
-            </Animation>
       </svg>
     )
   }
