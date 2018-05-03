@@ -3,13 +3,14 @@ import React from 'react'
 import Sky from './Sky'
 import Room from './Room'
 import ItemContainer from './ItemContainer'
+import SmallGiftBox from './SmallGiftBox'
 
 import {createGrid} from '../utils/createGrid'
 import {makeGridSize} from '../utils/makeGridSize'
 import {setItem} from '../utils/setItem'
 
 const Canvas = (props) => {
-  const {item, windowWidth, windowHeight, randomItem, chooseIndex, clickable} = props
+  const {item, windowWidth, windowHeight, randomItem, chooseIndex, clickable, display, setDisplay} = props
   const ItemComponent = setItem('gift')
   let RewardComponent = ItemComponent
   if (item) {
@@ -17,28 +18,24 @@ const Canvas = (props) => {
   }
   const gridSize = makeGridSize(windowWidth, windowHeight, 3, 3)
   const grids = createGrid(gridSize, 3, 3)
+  const smallGiftBoxPosition = {
+  x: (windowWidth/2)-(windowWidth/2.5),
+  y: (windowHeight*0.85)
+}
   return (
     <svg
       id="gift-box-canvas"
       x="0px" y="0px"
       viewBox={`0 0 ${windowWidth} ${windowHeight}`}
     >
-      <Sky />
       <Room windowWidth={windowWidth} windowHeight={windowHeight} />
-      {
-        grids.map((grid, index) => {
-          return (
-              <ItemContainer
-                randomItem={randomItem}
-                clickable={clickable}
-                key={index}
-                index={index}
-                grid={grid}
-                ItemComponent={isRewardComponent(index, item, ItemComponent, RewardComponent)}
-                isMoving={isMoving(chooseIndex, index)}
-              />
-          )
-        })
+      <SmallGiftBox setDisplay={setDisplay} position={smallGiftBoxPosition} width={50} height={50} isMoving={!item} />
+
+      { display &&
+        <g>
+          <Sky />
+        </g>
+
       }
     </svg>
   )
