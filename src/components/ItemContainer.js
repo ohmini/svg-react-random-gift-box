@@ -7,7 +7,7 @@ const Container = styled.g`
 
 class ItemContainer extends Component {
   render() {
-    const {ItemComponent, position, width, height, isMoving, display} = this.props
+    const {ItemComponent, position, width, height, isMoving} = this.props
     return (
       <Container>
         <ItemComponent

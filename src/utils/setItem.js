@@ -1,7 +1,8 @@
 import {Items} from '../components/items'
 
 export const setItem = (item) => {
-  switch (item) {
+  if (!item) return Items.Box
+  switch (item.name) {
     case 'gift':
       return Items.Box
     case 'basketball':

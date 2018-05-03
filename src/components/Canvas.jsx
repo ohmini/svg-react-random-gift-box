@@ -1,21 +1,15 @@
 import React from 'react'
 
 import Sky from './Sky'
-import Room from './Room'
 import ItemContainer from './ItemContainer'
 import GiftButton from './GiftButton'
 
-import {createGrid} from '../utils/createGrid'
-import {makeGridSize} from '../utils/makeGridSize'
 import {setItem} from '../utils/setItem'
 
 const Canvas = (props) => {
-  const {item, windowWidth, windowHeight, randomItem, pickReward, chooseIndex, clickable, display, isMoving, setDisplay} = props
-  const ItemComponent = setItem('gift')
-  let RewardComponent = ItemComponent
-  if (item) {
-    RewardComponent = setItem(item.name)
-  }
+  const {item, windowWidth, windowHeight, randomItem, pickReward, clickable, isMoving} = props
+  const ItemComponent = setItem(item)
+
   const itemWidth= 200
   const itemHeight= 200
   const itemPosition = {
@@ -37,24 +31,13 @@ const Canvas = (props) => {
       <Sky />
       <ItemContainer
         position={itemPosition}
-        ItemComponent={RewardComponent}
-        isMoving={false}
+        ItemComponent={ItemComponent}
         height={itemHeight}
         width={itemWidth}
       />
-      <GiftButton randomItem={randomItem} pickReward={pickReward} position={btnPosition} width={btnWidth} height={btnHeight} isMoving={isMoving}/>
+      <GiftButton clickable={clickable} randomItem={randomItem} pickReward={pickReward} position={btnPosition} width={btnWidth} height={btnHeight} isMoving={isMoving}/>
     </svg>
   )
-}
-
-function isMoving(chooseIndex, index) {
-  if (!chooseIndex) return false
-  return (chooseIndex === index) ? true: false
-}
-
-function isRewardComponent(index, item, GiftComponent, RewardComponent){
-  if (!item) return GiftComponent
-  return (index === item.index) ? RewardComponent: GiftComponent
 }
 
 export default Canvas

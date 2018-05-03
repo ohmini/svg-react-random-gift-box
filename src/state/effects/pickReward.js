@@ -5,7 +5,6 @@ import {randomItemAsync} from '../api/randomItemAsync'
 import {setItem} from '../actions/setItem'
 import {setClickable} from '../actions/setClickable'
 import {setMoving} from '../actions/setMoving'
-import {getMoving} from '../selectors/getMoving'
 import {getItem} from '../selectors/getItem'
 
 const round = 10

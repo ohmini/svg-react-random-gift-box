@@ -4,7 +4,7 @@ import {withHandlers} from 'recompose'
 
 class GiftButton extends Component {
   render() {
-    const {handleClick, position, width, height, isMoving} = this.props
+    const {handleClick, position, width, height} = this.props
     return (
       <svg onClick={handleClick} version="1.1" id="gift-button" x={position.x} y={position.y} width={width} height={height}
          viewBox="0 0 504.124 504.124" enableBackground="new 0 0 504.124 504.124" transform="translate(-53, -130)">
@@ -30,13 +30,14 @@ class GiftButton extends Component {
   }
 }
 
-
 const enhance = withHandlers({
-  handleClick: ({randomItem, pickReward, isMoving}) => () => {
-    if (!isMoving) {
-      randomItem()
-    } else {
-      pickReward()
+  handleClick: ({randomItem, pickReward, isMoving, clickable}) => () => {
+    if (clickable) {
+      if (!isMoving) {
+        randomItem()
+      } else {
+        pickReward()
+      }
     }
   }
 })
