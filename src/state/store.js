@@ -3,9 +3,11 @@ import createSagaMiddleware from 'redux-saga'
 
 import reducer from './reducers'
 import {randomItemEffect} from './effects/randomItem'
+import {pickRewardEffect} from './effects/pickReward'
 
 const effects = [
   randomItemEffect,
+  pickRewardEffect,
 ]
 
 const sagaMiddleware = createSagaMiddleware()

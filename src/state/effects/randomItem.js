@@ -1,19 +1,23 @@
-import {take, call, put} from 'redux-saga/effects'
+import {take, call, put, select} from 'redux-saga/effects'
 
 import {types} from '../actions'
 import {randomItemAsync} from '../api/randomItemAsync'
 import {setItem} from '../actions/setItem'
 import {setClickable} from '../actions/setClickable'
-import {setChooseIndex} from '../actions/setChooseIndex'
+import {setMoving} from '../actions/setMoving'
+import {getMoving} from '../selectors/getMoving'
+import {getItem} from '../selectors/getItem'
 
 export function* randomItemEffect() {
   while (true) {
-    const {payload: {index}} = yield take(types.RANDOM_ITEM)
-    yield put(setClickable(false))
-    yield put(setChooseIndex(index))
-    const item = yield call(randomItemAsync)
-    yield put(setItem(item, index))
-    yield put(setChooseIndex(null))
-    yield put(setClickable(true))
+    yield take(types.RANDOM_ITEM)
+    yield put(setMoving(true))
+    let isMoving = yield select(state => getMoving(state))
+    while (isMoving) {
+      const prevItem = yield select(state => getItem(state))
+      const item = yield call(randomItemAsync, prevItem, 100)
+      yield put(setItem(item))
+      isMoving = yield select(state => getMoving(state))
+    }
   }
 }

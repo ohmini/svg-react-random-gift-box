@@ -1,9 +1,9 @@
 import React from 'react'
 
 const BasketBall = (props) => {
-  const {handleClick, x, y, width, height} = props
+  const {x, y, width, height} = props
   return (
-    <svg onClick={handleClick} version="1.1" id="basketball" x={x} y={y} width={width} height={height}
+    <svg  version="1.1" id="basketball" x={x} y={y} width={width} height={height}
     	 viewBox="0 0 504.616 504.616" enableBackground="new 0 0 504.616 504.616">
     <g>
       <path fill="#E2574C" d="M468.923,484.136c0,11.422-9.058,20.48-20.48,20.48H56.172c-11.028,0-20.48-9.058-20.48-20.48

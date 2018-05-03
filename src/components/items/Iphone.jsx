@@ -1,9 +1,9 @@
 import React from 'react'
 
 const IPhone = (props) => {
-  const {handleClick, x, y, width, height} = props
+  const {x, y, width, height} = props
   return (
-    <svg onClick={handleClick} version="1.1" id="iphone" x={x} y={y} width={width} height={height}
+    <svg version="1.1" id="iphone" x={x} y={y} width={width} height={height}
     	 viewBox="0 0 504.124 504.124" enableBackground="new 0 0 504.124 504.124">
      <g>
      <path fill="#E4E7E7" d="M153.6,0h196.923c21.662,0,39.385,17.723,39.385,39.385v425.354

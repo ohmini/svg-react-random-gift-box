@@ -1,14 +1,19 @@
 import {items} from '../constants/items'
 
-export async function randomItemAsync() {
-  const item = items[Math.floor(Math.random()*items.length)]
-  return await resolveAfterSeconds(item, 2)
+export async function randomItemAsync(prevItem, ms) {
+  let item = items[Math.floor(Math.random()*items.length)]
+  if (prevItem) {
+    while (prevItem.name === item.name) {
+      item = items[Math.floor(Math.random()*items.length)]
+    }
+  }
+  return await resolveAfterSeconds(item, ms)
 }
 
-function resolveAfterSeconds(item, seconds) {
+function resolveAfterSeconds(item, ms) {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve(item)
-    }, seconds * 1000)
+    }, ms)
   })
 }

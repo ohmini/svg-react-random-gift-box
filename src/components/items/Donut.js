@@ -1,9 +1,9 @@
 import React from 'react'
 
 const Donut = (props) => {
-  const {handleClick, x, y, width, height} = props
+  const { x, y, width, height} = props
   return (
-    <svg onClick={handleClick} version="1.1" id="donut" x={x} y={y} width={width} height={height}
+    <svg version="1.1" id="donut" x={x} y={y} width={width} height={height}
     	 viewBox="0 0 505.304 505.304" enableBackground="new 0 0 505.304 505.304">
      <g>
        <path fill="#E89C25" d="M252.849,0.59C113.822,0.59,0.788,113.624,0.788,252.651S113.822,504.714,252.85,504.714
