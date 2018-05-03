@@ -1,10 +1,7 @@
 import {types} from './'
 
-export const randomItem = (index) => {
+export const randomItem = () => {
   return {
     type: types.RANDOM_ITEM,
-    payload: {
-      index,
-    }
   }
 }

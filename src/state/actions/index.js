@@ -3,6 +3,8 @@ const SET_ITEM = 'SET_ITEM'
 const SET_CLICKABLE = 'SET_CLICKABLE'
 const SET_CHOOSE_INDEX = 'SET_CHOOSE_INDEX'
 const SET_DISPLAY = 'SET_DISPLAY'
+const SET_MOVING = 'SET_MOVING'
+const PICK_REWARD = 'PICK_REWARD'
 
 export const types = {
   RANDOM_ITEM,
@@ -10,4 +12,6 @@ export const types = {
   SET_CLICKABLE,
   SET_CHOOSE_INDEX,
   SET_DISPLAY,
+  SET_MOVING,
+  PICK_REWARD,
 }
