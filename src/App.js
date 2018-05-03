@@ -4,10 +4,12 @@ import {connect} from 'react-redux'
 
 import {randomItem} from './state/actions/randomItem'
 import {setDisplay} from './state/actions/setDisplay'
+import {pickReward} from './state/actions/pickReward'
 import {getItem} from './state/selectors/getItem'
 import {getClickable} from './state/selectors/getClickable'
 import {getChooseIndex} from './state/selectors/getChooseIndex'
 import {getDisplay} from './state/selectors/getDisplay'
+import {getMoving} from './state/selectors/getMoving'
 import Canvas from './components/Canvas'
 
 class App extends Component {
@@ -22,7 +24,7 @@ class App extends Component {
   }
 
   render() {
-    const {item, windowWidth, windowHeight, randomItem, clickable, chooseIndex, setDisplay, display} = this.props
+    const {item, windowWidth, windowHeight, randomItem, clickable, chooseIndex, setDisplay, display, pickReward, isMoving} = this.props
     return (
       <Canvas
         item={item}
@@ -33,6 +35,8 @@ class App extends Component {
         clickable={clickable}
         display={display}
         setDisplay={setDisplay}
+        pickReward={pickReward}
+        isMoving={isMoving}
       />
     )
   }
@@ -54,11 +58,13 @@ const mapStateToProps = (state) => ({
   clickable: getClickable(state),
   chooseIndex: getChooseIndex(state),
   display: getDisplay(state),
+  isMoving: getMoving(state),
 })
 
 const withStore = connect(mapStateToProps, {
   randomItem: randomItem,
   setDisplay: setDisplay,
+  pickReward: pickReward,
 })
 
 export default withStore(enhance(App))
