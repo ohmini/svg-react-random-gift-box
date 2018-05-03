@@ -28,10 +28,10 @@ const Wait = styled.g`
 `
 
 const Box = (props) => {
-  const {handleClick, x, y, width, height, isMoving} = props
+  const { x, y, width, height, isMoving} = props
   const Animation = isMoving ? Move: Wait
   return (
-    <svg onClick={handleClick} version="1.1" id="gift-box" x={x} y={y} width={width} height={height}
+    <svg version="1.1" id="gift-box" x={x} y={y} width={width} height={height}
     	 viewBox="0 0 504.124 504.124" enableBackground="new 0 0 504.124 504.124">
       <Animation>
         <path fill="#DB5449" d="M15.754,133.909l236.308,118.154L488.37,133.909v252.062L252.062,504.123L15.754,385.969V133.909z"/>

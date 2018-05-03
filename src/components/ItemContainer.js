@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
-import {withHandlers} from 'recompose'
 
 const Container = styled.g`
   cursor: pointer;
@@ -8,11 +7,10 @@ const Container = styled.g`
 
 class ItemContainer extends Component {
   render() {
-    const {ItemComponent, position, width, height, handleClick, isMoving} = this.props
+    const {ItemComponent, position, width, height, isMoving, display} = this.props
     return (
       <Container>
         <ItemComponent
-          handleClick={handleClick}
           x={position.x}
           y={position.y}
           width={width}
@@ -24,12 +22,5 @@ class ItemContainer extends Component {
   }
 }
 
-const enhance = withHandlers({
-  handleClick: ({index, randomItem, clickable}) => () => {
-    if (clickable) {
-      randomItem(index)
-    }
-  }
-})
 
-export default enhance(ItemContainer)
+export default ItemContainer
