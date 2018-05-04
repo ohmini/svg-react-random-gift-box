@@ -43,6 +43,7 @@ const Canvas = (props) => {
       <Container>
         <GiftButton clickable={clickable} randomItem={randomItem} pickReward={pickReward} position={btnPosition} width={btnWidth} height={btnHeight} isMoving={isMoving}/>
       </Container>
+      <text x="15" y="30" fill="black">last updated: 4 พ.ค. 61 15:59</text>
     </svg>
   )
 }
