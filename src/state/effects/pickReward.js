@@ -9,6 +9,7 @@ import {setItem} from '../actions/setItem'
 import {setClickable} from '../actions/setClickable'
 import {setMoving} from '../actions/setMoving'
 import {getItem} from '../selectors/getItem'
+import {playSound} from '../../utils/playSound'
 
 const round = 10
 const changeRate = 70
@@ -27,9 +28,11 @@ export function* pickRewardEffect() {
           prevItem = reward
         }
         const item = yield call(randomItemAsync, prevItem, i * changeRate )
+        playSound('ping')
         yield put(setItem(item))
     }
     yield call(delay, i * changeRate )
+    playSound('success')
     yield put(setItem(reward))
     yield put(setClickable(true))
   }
