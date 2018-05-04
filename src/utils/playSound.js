@@ -12,6 +12,7 @@ export const playSound = (soundName) => {
     case 'success':
       audio.src = successSound
       audio.play()
+      break
     default:
       break
   }
