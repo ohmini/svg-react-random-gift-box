@@ -2,6 +2,7 @@
 import React, {Component} from 'react'
 import {withHandlers} from 'recompose'
 import styled, {keyframes} from 'styled-components'
+import {playSound} from '../utils/playSound'
 
 const moveVertically = keyframes`
   0% {
@@ -63,6 +64,7 @@ const enhance = withHandlers({
   handleClick: ({randomItem, pickReward, isMoving, clickable}) => () => {
     if (clickable) {
       if (!isMoving) {
+        playSound('ping')
         randomItem()
       } else {
         pickReward()
